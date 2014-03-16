@@ -1,0 +1,25 @@
+{
+  "name": "ninja-connectedbytcp",
+  "version": "0.0.1",
+  "description": "Ninja Blocks module for interacting with a Connected by TCP System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stockmopar/ninja-connectedbytcp.git"
+  },
+  "keywords": [
+    "Connected by TCP",
+    "TCP",
+    "Ninja",
+    "Blocks"
+  ],
+  "author": "Joe Sto k",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "connectedbytcp": "0.0.1"
+  }
+}
