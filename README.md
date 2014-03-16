@@ -19,12 +19,12 @@ This is faster when you already have a version installed and connectedbytcp hasn
 
 ```sh
 cd /opt/ninja/drivers
-move ninja-connectedbytcp/node_modules tmp
+mv ninja-connectedbytcp/node_modules tmp
 
 rm -rf ninja-connectedbytcp
 git clone https://github.com/stockmopar/ninja-connectedbytcp.git
 
-move tmp ninja-connectedbytcp/node_modules
+mv tmp ninja-connectedbytcp/node_modules
 
 cd /opt/ninja
 node client.js
