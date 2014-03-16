@@ -44,31 +44,30 @@ cbtcp.prototype.init = function(){
 // Export it
 module.exports = cbtcp;
 
-/*
-wemo.prototype.scan = function() {
+cbtcp.prototype.scan = function() {
+  
   // Discover WeMos
-  WeMo.discover(function(WeMos) {
+  //WeMo.discover(function(WeMos) {
 
-    this._app.log.info('(WeMo) Found %s WeMo(s)',WeMos.length);
+    //this._app.log.info('(WeMo) Found %s WeMo(s)',WeMos.length);
     // Iterate over found WeMos
-    WeMos.forEach(function(WeMo) {
+    //WeMos.forEach(function(WeMo) {
 
-      var host = WeMo.location.host;
+      //var host = WeMo.location.host;
 
-      if (this._opts.sockets.indexOf(host)===-1) {
-        this.remember(host);
-      }
+      //if (this._opts.sockets.indexOf(host)===-1) {
+      //  this.remember(host);
+      //}
+	//if(this._opts.sockets.length
+    //  this.load(host);
 
-      this.load(host);
+    //}.bind(this));
 
-    }.bind(this));
-
-  }.bind(this));
+  //}.bind(this));
 };
-*/
 
 cbtcp.prototype.load = function(host) {
-
+  console.log("Connected by TCP at " + host + " is now being registered");
   var client = new ConnectedByTCP(host);
   var G = this._opts.sockets.indexOf(host);
 
