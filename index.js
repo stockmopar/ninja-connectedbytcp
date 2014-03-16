@@ -34,7 +34,7 @@ function cbtcp(opts,app) {
 /**
  * Discover and load WeMos
  */
-wemo.prototype.init = function(){
+cbtcp.prototype.init = function(){
 
   this.scan();
   // Register known WeMos
