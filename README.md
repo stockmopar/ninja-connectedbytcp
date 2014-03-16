@@ -13,6 +13,7 @@ sudo npm install
 
 cd /opt/ninja
 node client.js
+
 ```
 
 This is faster when you already have a version installed and connectedbytcp hasn't changed.
@@ -28,4 +29,5 @@ mv tmp ninja-connectedbytcp/node_modules
 
 cd /opt/ninja
 node client.js
+
 ```
