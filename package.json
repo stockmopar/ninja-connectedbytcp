@@ -20,6 +20,6 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "connectedbytcp": "0.0.1"
+    "connectedbytcp": "0.0.3"
   }
 }
