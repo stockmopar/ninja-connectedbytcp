@@ -6,9 +6,6 @@ cd /opt/ninja/drivers
 rm -rf ninja-connectedbytcp
 git clone https://github.com/stockmopar/ninja-connectedbytcp.git
 cd ninja-connectedbytcp
-npm install
-
-rm -rf connectedbytcp
-git clone https://github.com/stockmopar/connectedbytcp.git
+sudo npm install
 cd /opt/ninja
 node client.js
