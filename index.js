@@ -73,7 +73,9 @@ cbtcp.prototype.load = function(host) {
   client.GetState(function(error,system){
 		system.forEach(function(room) { 
 			//this.emit('register',new Socket(this._app,client,G));
-			console.log(room);
+			//console.log(room);
+			G = room["rid"];
+			this.emit('register',new Socket(this._app,client,room));
 			/*
 			if(room["name"] == name){
 				state = 0;
