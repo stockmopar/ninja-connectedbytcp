@@ -99,10 +99,10 @@ cbtcp.prototype.load = function(host) {
 				cb(null,state,level);
 			}
 			*/
-		});
+		}.bind(this));
 
 	//this.emit('register',new Socket(this._app,client,G));
-  });
+  }.bind(this));
   
   //var G = this._opts.sockets.indexOf(host);
   
