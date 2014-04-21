@@ -71,7 +71,7 @@ cbtcp.prototype.load = function(host) {
   var client = new ConnectedByTCP(host);
   
   client.GetState(function(error,system){
-		Rooms.forEach(function(room) { 
+		system.forEach(function(room) { 
 			//this.emit('register',new Socket(this._app,client,G));
 			console.log(room);
 			/*
