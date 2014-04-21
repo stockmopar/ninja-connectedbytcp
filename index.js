@@ -69,9 +69,41 @@ cbtcp.prototype.scan = function() {
 cbtcp.prototype.load = function(host) {
   console.log("Connected by TCP at " + host + " is now being registered");
   var client = new ConnectedByTCP(host);
-  var G = this._opts.sockets.indexOf(host);
+  
+  client.GetState(function(error,system){
+		Rooms.forEach(function(room) { 
+			//this.emit('register',new Socket(this._app,client,G));
+			console.log(room);
+			/*
+			if(room["name"] == name){
+				state = 0;
+				var i = 0;
+				var sum = 0;
+				var devices = room["device"];
+				devices.forEach(function(device) { 
+					i = i+1;
+					if(device["state"] != "0"){
+						state = 1;
+						sum = sum + parseInt(device["level"]);
+					}
+				});
+				if(i == 0){
+					sum = 0;
+					i = 1;
+					state = 0;
+				}
+				level = sum / i;
+				cb(null,state,level);
+			}
+			*/
+		});
 
-  this.emit('register',new Socket(this._app,client,G));
+	//this.emit('register',new Socket(this._app,client,G));
+  }
+  
+  //var G = this._opts.sockets.indexOf(host);
+  
+  //
 };
 
 /**
