@@ -104,6 +104,13 @@ cbtcp.prototype.load = function(host) {
 	//this.emit('register',new Socket(this._app,client,G));
   }.bind(this));
   
+    var fetchState = function() {
+		console.log("Getting TCP Lights State");
+		cbtcp.GetState(function(error,system){
+		
+		});
+	};
+	setInterval(fetchState,3000);
   //var G = this._opts.sockets.indexOf(host);
   
   //
