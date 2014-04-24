@@ -68,7 +68,7 @@ cbtcp.prototype.scan = function() {
 
 cbtcp.prototype.load = function(host) {
   console.log("Connected by TCP at " + host + " is now being registered");
-  var client = new ConnectedByTCP(host);
+  client = new ConnectedByTCP(host);
   
   client.GetState(function(error,system){
 		console.log(system);
