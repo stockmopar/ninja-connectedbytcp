@@ -106,7 +106,7 @@ cbtcp.prototype.load = function(host) {
   
     var fetchState = function() {
 		console.log("Getting TCP Lights State");
-		cbtcp.GetState(function(error,system){
+		client.GetState(function(error,system){
 		
 		});
 	};
