@@ -1,9 +1,14 @@
 ninja-connectedbytcp
 ====================
 
-Do this for a new install or if connectedbytcp has changed
+Do this for a new install or if connectedbytcp has changed.
+
+Note: This will take about 10 minutes to install.
 
 ```sh
+
+sudo stop ninjablock
+
 cd /opt/ninja/drivers
 
 rm -rf ninja-connectedbytcp
@@ -11,14 +16,18 @@ git clone https://github.com/stockmopar/ninja-connectedbytcp.git
 cd ninja-connectedbytcp
 sudo npm install
 
-cd /opt/ninja
-node client.js
+sudo start ninjablock
 
 ```
 
 This is faster when you already have a version installed and connectedbytcp hasn't changed.
 
+The below scripts are what I have been using to update my ninja driver after I have already installed the nodejs driver.
+
 ```sh
+
+sudo stop ninjablock
+
 cd /opt/ninja/drivers
 mv ninja-connectedbytcp/node_modules tmp
 
@@ -32,7 +41,7 @@ node client.js
 
 ```
 
-This is faster when you already have a version installed and connectedbytcp has changed (experimental)
+I have not actually tested the below script.  It is intended to be a faster way to modify both the nodejs package and the ninja package after having installed all the required modules.  This is faster when you already have a version installed and connectedbytcp has changed (experimental)
 
 ```sh
 cd /opt/ninja/drivers
