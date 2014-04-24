@@ -110,7 +110,7 @@ cbtcp.prototype.load = function(host) {
 		
 		});
 	};
-	setInterval(fetchState,5000);
+	setInterval(fetchState,3000);
   //var G = this._opts.sockets.indexOf(host);
   
   //
