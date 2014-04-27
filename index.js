@@ -107,10 +107,10 @@ cbtcp.prototype.load = function(host) {
     var fetchState = function() {
 		console.log("Getting TCP Lights State");
 		client.GetState(function(error,system){
-		
+			setTimeout(fetchState,1000);
 		});
 	};
-	setInterval(fetchState,3000);
+	setTimeout(fetchState,1000);
   //var G = this._opts.sockets.indexOf(host);
   
   //
