@@ -40,7 +40,7 @@ sudo start ninjablock
 
 ```
 
-I am still working on a faster way to update both the connectedbytcp module and ninja-connectedbytcp module. The below currently does not work!
+This is a faster way to update both the connectedbytcp module and ninja-connectedbytcp module but this only works if you have the modules installed already.
 ```sh
 
 sudo stop ninjablock
