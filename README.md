@@ -81,3 +81,11 @@ Hit Control+C and then execute:
 sudo start ninjablock
 
 ```
+
+To View the NinjaBlocks log file execute:
+
+```sh
+
+cat /var/log/ninjablock.log
+
+```
