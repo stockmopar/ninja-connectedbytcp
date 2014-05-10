@@ -46,21 +46,17 @@ I am still working on a faster way to update both the connectedbytcp module and 
 
 cd /opt/ninja/drivers
 
-## Try to copy old connectebytcp node_modules folder
-## mv ninja-connectedbytcp/node_modules/connectedbytcp/mode_modules tmp
-##
+mv ninja-connectedbytcp/node_modules/connectedbytcp/node_modules tmp
 
 rm -rf ninja-connectedbytcp
 git clone https://github.com/stockmopar/ninja-connectedbytcp.git
 
+mkdir ninja-connectedbytcp/node_modules/
 cd ninja-connectedbytcp/node_modules/
 git clone https://github.com/stockmopar/connectedbytcp.git
 
-##
-## Try to move the old node_modules folder back into the appropriate folder
-##
-## cd /opt/ninja/drivers
-## mv tmp ninja-connectedbytcp/node_modules/connectedbytcp/mode_modules
+cd /opt/ninja/drivers
+mv tmp ninja-connectedbytcp/node_modules/connectedbytcp/node_modules
 
 cd /opt/ninja
 node client.js
