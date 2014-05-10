@@ -36,13 +36,14 @@ git clone https://github.com/stockmopar/ninja-connectedbytcp.git
 
 mv tmp ninja-connectedbytcp/node_modules
 
-cd /opt/ninja
-node client.js
+sudo start ninjablock
 
 ```
 
 I am still working on a faster way to update both the connectedbytcp module and ninja-connectedbytcp module. The below currently does not work!
 ```sh
+
+sudo stop ninjablock
 
 cd /opt/ninja/drivers
 
@@ -58,7 +59,25 @@ git clone https://github.com/stockmopar/connectedbytcp.git
 cd /opt/ninja/drivers
 mv tmp ninja-connectedbytcp/node_modules/connectedbytcp/node_modules
 
+sudo start ninjablock
+
+```
+
+IF something is not working right execute this to run the client in the window to see if there are any errors.
+
+```sh
+
+sudo stop ninjablock
+
 cd /opt/ninja
 node client.js
+
+```
+
+Hit Control+C and then execute:
+
+```sh
+
+sudo start ninjablock
 
 ```
