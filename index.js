@@ -68,6 +68,7 @@ cbtcp.prototype.scan = function() {
 
 cbtcp.prototype.load = function(host) {
   this._app.log.info("Connected by TCP at " + host + " is now being registered");
+  app = this._app;
   //console.log("Connected by TCP at " + host + " is now being registered");
   client = new ConnectedByTCP(host);
   
@@ -106,9 +107,9 @@ cbtcp.prototype.load = function(host) {
   }.bind(this));
   
     var fetchState = function() {
-		this._app.log.info("Getting TCP Lights State");
+		app.log.info("Getting TCP Lights State");
 		client.GetState(function(error,system){
-			this._app.log.info("TCP Lights State Updated");
+			app.log.info("TCP Lights State Updated");
 			setTimeout(fetchState,1000);
 		});
 	};
