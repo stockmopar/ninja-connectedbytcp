@@ -67,11 +67,12 @@ cbtcp.prototype.scan = function() {
 };
 
 cbtcp.prototype.load = function(host) {
-  console.log("Connected by TCP at " + host + " is now being registered");
+  this._app.log.info("Connected by TCP at " + host + " is now being registered");
+  //console.log("Connected by TCP at " + host + " is now being registered");
   client = new ConnectedByTCP(host);
   
   client.GetState(function(error,system){
-		console.log(system);
+		//console.log(system);
 		system.forEach(function(room) { 
 			//this.emit('register',new Socket(this._app,client,G));
 			//console.log(room["name"]);
@@ -105,8 +106,9 @@ cbtcp.prototype.load = function(host) {
   }.bind(this));
   
     var fetchState = function() {
-		console.log("Getting TCP Lights State");
+		this._app.log.info("Getting TCP Lights State");
 		client.GetState(function(error,system){
+			this._app.log.info("TCP Lights State Updated");
 			setTimeout(fetchState,1000);
 		});
 	};
