@@ -111,7 +111,7 @@ cbtcp.prototype.load = function(host) {
 		client.GetState(function(error,system){
 			app.log.info(system);
 			app.log.info("(TCP Lights) State Response");
-			setTimeout(fetchState,1000);
+			setTimeout(fetchState,3000);
 		});
 	};
 	setTimeout(fetchState,1000);
