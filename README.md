@@ -89,3 +89,12 @@ To View the NinjaBlocks log file execute:
 cat /var/log/ninjablock.log
 
 ```
+
+To Delete the NinjaBlocks log file execute:
+
+```sh
+
+> /var/log/ninjablock.log
+
+
+```
