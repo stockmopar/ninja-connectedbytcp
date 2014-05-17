@@ -69,16 +69,22 @@ cbtcp.prototype.scan = function() {
 cbtcp.prototype.load = function(host) {
   this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
   app = this._app;
+  //roomDevices = [];
   //console.log("Connected by TCP at " + host + " is now being registered");
   client = new ConnectedByTCP(host);
   
   client.GetState(function(error,system){
-		console.log(system);
+		//console.log(system);
 		system.forEach(function(room) { 
 			//this.emit('register',new Socket(this._app,client,G));
 			//console.log(room["name"]);
 			//G = room["rid"];
 			this.emit('register',new Socket(this._app,client,room));
+			
+			//var roomDevoce = new Socket(this._app,client,room);
+			//roomDevices.push(roomDevoce);
+			//this.emit('register',roomDevoce);
+			
 			/*
 			if(room["name"] == name){
 				state = 0;
@@ -107,10 +113,16 @@ cbtcp.prototype.load = function(host) {
   }.bind(this));
   
     var fetchState = function() {
-		app.log.info("(TCP Lights) State Request");
+		// app.log.info("(TCP Lights) State Request");
 		client.GetState(function(error,system){
-			app.log.info(system);
-			app.log.info("(TCP Lights) State Response");
+			//if(!error){
+				//roomDevices.forEach(function(roomDevice) { 
+					//roomDevice.emit(roomDevice
+					
+				//}
+			//}
+			// app.log.info(system);
+			// app.log.info("(TCP Lights) State Response");
 			setTimeout(fetchState,3000);
 		});
 	};
