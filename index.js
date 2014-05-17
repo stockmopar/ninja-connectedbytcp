@@ -123,7 +123,7 @@ cbtcp.prototype.load = function(host) {
 			//}
 			// app.log.info(system);
 			// app.log.info("(TCP Lights) State Response");
-			setTimeout(fetchState,3000);
+			// setTimeout(fetchState,3000);
 		});
 	};
 	setTimeout(fetchState,1000);
