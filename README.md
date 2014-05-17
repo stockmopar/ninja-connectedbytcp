@@ -1,6 +1,22 @@
 ninja-connectedbytcp
 ====================
 
+Changelog
+
+0.0.6
+
+- Changed device state polling time to 3 seconds
+- Modified amount and type of debugging
+
+0.0.5
+
+- Fixed issue to support single room
+- Changed identifiers to include TCP to differentiate from Hue lights
+
+0.0.1 to 0.0.4
+- Initial Releases
+- Lots of bug fixes
+
 Do this for a new install or if connectedbytcp has changed.
 
 Note: This will take about 10 minutes to install.
@@ -87,14 +103,5 @@ To View the NinjaBlocks log file execute:
 ```sh
 
 cat /var/log/ninjablock.log
-
-```
-
-To Delete the NinjaBlocks log file execute:
-
-```sh
-
-> /var/log/ninjablock.log
-
 
 ```
