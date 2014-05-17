@@ -89,7 +89,7 @@ cd /opt/ninja/drivers
 mv ninja-connectedbytcp/node_modules tmp
 
 rm -rf ninja-connectedbytcp
-git -b develop clone https://github.com/stockmopar/ninja-connectedbytcp.git
+git clone -b develop https://github.com/stockmopar/ninja-connectedbytcp.git
 
 mv tmp ninja-connectedbytcp/node_modules
 
@@ -107,7 +107,7 @@ cd /opt/ninja/drivers
 mv ninja-connectedbytcp/node_modules/connectedbytcp/node_modules tmp
 
 rm -rf ninja-connectedbytcp
-git -b develop clone https://github.com/stockmopar/ninja-connectedbytcp.git
+git clone -b develop https://github.com/stockmopar/ninja-connectedbytcp.git
 
 mkdir ninja-connectedbytcp/node_modules/
 cd ninja-connectedbytcp/node_modules/
