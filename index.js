@@ -35,7 +35,7 @@ function cbtcp(opts,app) {
  * Discover and load WeMos
  */
 cbtcp.prototype.init = function(){
-
+  this._app.log.info("(TCP Lights) init()");
   this.scan();
   // Register known WeMos
   this._opts.sockets.forEach(this.load.bind(this));
@@ -45,7 +45,7 @@ cbtcp.prototype.init = function(){
 module.exports = cbtcp;
 
 cbtcp.prototype.scan = function() {
-  
+  this._app.log.info("(TCP Lights) scan()");
   // Discover WeMos
   //WeMo.discover(function(WeMos) {
 
@@ -137,7 +137,7 @@ cbtcp.prototype.load = function(host) {
  * @param {[String} host Host of the WeMo to remember
  */
 cbtcp.prototype.remember = function(host) {
-
+  this._app.log.info("(TCP Lights) remember()");
   this._opts.sockets.push(host);
   this.save();
 };
@@ -148,7 +148,7 @@ cbtcp.prototype.remember = function(host) {
  * @param  {Function} cb      Callback with return data
  */
 cbtcp.prototype.config = function(rpc,cb) {
-
+  this._app.log.info("(TCP Lights) config()");
   var self = this;
 
   if (!rpc) {
