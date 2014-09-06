@@ -111,7 +111,7 @@ git clone -b develop https://github.com/stockmopar/ninja-connectedbytcp.git
 
 mkdir ninja-connectedbytcp/node_modules/
 cd ninja-connectedbytcp/node_modules/
-git clone https://github.com/stockmopar/connectedbytcp.git
+git clone -b develop https://github.com/stockmopar/connectedbytcp.git
 
 cd /opt/ninja/drivers
 mv tmp ninja-connectedbytcp/node_modules/connectedbytcp/node_modules
