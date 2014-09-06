@@ -28,116 +28,48 @@ function cbtcp(opts,app) {
   this._opts = opts;
   this._opts.sockets = opts.sockets || [];
 
-  app.on('client::up', this.init.bind(this));
-};
+  app.once('client::up', this.init.bind(this));
+ };
 
 /**
- * Discover and load WeMos
+ * Discover and load TCP Bases
  */
 cbtcp.prototype.init = function(){
+  this._app.log.info("(TCP Lights) init()");
 
-  this.scan();
-  // Register known WeMos
   this._opts.sockets.forEach(this.load.bind(this));
 };
 
 // Export it
 module.exports = cbtcp;
 
-cbtcp.prototype.scan = function() {
-  
-  // Discover WeMos
-  //WeMo.discover(function(WeMos) {
-
-    //this._app.log.info('(WeMo) Found %s WeMo(s)',WeMos.length);
-    // Iterate over found WeMos
-    //WeMos.forEach(function(WeMo) {
-
-      //var host = WeMo.location.host;
-
-      //if (this._opts.sockets.indexOf(host)===-1) {
-      //  this.remember(host);
-      //}
-	//if(this._opts.sockets.length
-    //  this.load(host);
-
-    //}.bind(this));
-
-  //}.bind(this));
-};
-
 cbtcp.prototype.load = function(host) {
   this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
   app = this._app;
-  //roomDevices = [];
-  //console.log("Connected by TCP at " + host + " is now being registered");
+
   client = new ConnectedByTCP(host);
   
   client.GetState(function(error,system){
-		//console.log(system);
 		system.forEach(function(room) { 
-			//this.emit('register',new Socket(this._app,client,G));
-			//console.log(room["name"]);
-			//G = room["rid"];
 			this.emit('register',new Socket(this._app,client,room));
-			
-			//var roomDevoce = new Socket(this._app,client,room);
-			//roomDevices.push(roomDevoce);
-			//this.emit('register',roomDevoce);
-			
-			/*
-			if(room["name"] == name){
-				state = 0;
-				var i = 0;
-				var sum = 0;
-				var devices = room["device"];
-				devices.forEach(function(device) { 
-					i = i+1;
-					if(device["state"] != "0"){
-						state = 1;
-						sum = sum + parseInt(device["level"]);
-					}
-				});
-				if(i == 0){
-					sum = 0;
-					i = 1;
-					state = 0;
-				}
-				level = sum / i;
-				cb(null,state,level);
-			}
-			*/
 		}.bind(this));
-
-	//this.emit('register',new Socket(this._app,client,G));
   }.bind(this));
   
     var fetchState = function() {
-		// app.log.info("(TCP Lights) State Request");
+		app.fetchlock = 1;
 		client.GetState(function(error,system){
-			//if(!error){
-				//roomDevices.forEach(function(roomDevice) { 
-					//roomDevice.emit(roomDevice
-					
-				//}
-			//}
-			// app.log.info(system);
-			// app.log.info("(TCP Lights) State Response");
-			setTimeout(fetchState,3000);
+			setTimeout(fetchState,10000);
 		});
 	};
 	setTimeout(fetchState,1000);
-  //var G = this._opts.sockets.indexOf(host);
-  
-  //
 };
 
 /**
- * Add a particular WeMo to this configuration
- * @param {[String} host Host of the WeMo to remember
+ * Add a particular TCP to this configuration
+ * @param {[String} host Host of the TCP to remember
  */
 cbtcp.prototype.remember = function(host) {
-
+  this._app.log.info("(TCP Lights) remember()");
   this._opts.sockets.push(host);
   this.save();
 };
@@ -148,7 +80,7 @@ cbtcp.prototype.remember = function(host) {
  * @param  {Function} cb      Callback with return data
  */
 cbtcp.prototype.config = function(rpc,cb) {
-
+  this._app.log.info("(TCP Lights) config()");
   var self = this;
 
   if (!rpc) {
