@@ -62,6 +62,7 @@ sudo start ninjablock
 ```
 
 This is a faster way to update both the connectedbytcp module and ninja-connectedbytcp module but this only works if you have the modules installed already.
+
 ```sh
 
 sudo stop ninjablock
@@ -84,48 +85,7 @@ sudo start ninjablock
 
 ```
 
-These are scripts to install from my develop branch
-
-```sh
-
-sudo stop ninjablock
-
-cd /opt/ninja/drivers
-mv ninja-connectedbytcp/node_modules tmp
-
-rm -rf ninja-connectedbytcp
-git clone -b develop https://github.com/stockmopar/ninja-connectedbytcp.git
-
-mv tmp ninja-connectedbytcp/node_modules
-
-sudo start ninjablock
-
-```
-
-This is a faster way to update both the connectedbytcp module and ninja-connectedbytcp module but this only works if you have the modules installed already.
-```sh
-
-sudo stop ninjablock
-
-cd /opt/ninja/drivers
-
-mv ninja-connectedbytcp/node_modules/connectedbytcp/node_modules tmp
-
-rm -rf ninja-connectedbytcp
-git clone -b develop https://github.com/stockmopar/ninja-connectedbytcp.git
-
-mkdir ninja-connectedbytcp/node_modules/
-cd ninja-connectedbytcp/node_modules/
-git clone -b develop https://github.com/stockmopar/connectedbytcp.git
-
-cd /opt/ninja/drivers
-mv tmp ninja-connectedbytcp/node_modules/connectedbytcp/node_modules
-
-sudo start ninjablock
-
-```
-
-IF something is not working right execute this to run the client in the window to see if there are any errors.
+If something is not working right execute this to run the client in the window to see if there are any errors.
 
 ```sh
 
