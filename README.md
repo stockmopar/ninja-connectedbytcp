@@ -3,6 +3,11 @@ ninja-connectedbytcp
 
 Changelog
 
+
+0.0.7
+
+- Fixed bug which would cause duplicate status fetching loops
+
 0.0.6
 
 - Changed device state polling time to 3 seconds
