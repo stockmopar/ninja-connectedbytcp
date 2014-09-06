@@ -58,7 +58,7 @@ cbtcp.prototype.load = function(host) {
     var fetchState = function() {
 		app.fetchlock = 1;
 		client.GetState(function(error,system){
-			setTimeout(fetchState,60000);
+			setTimeout(fetchState,10000);
 		});
 	};
 	setTimeout(fetchState,1000);
