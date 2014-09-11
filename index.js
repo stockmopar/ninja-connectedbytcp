@@ -52,6 +52,7 @@ cbtcp.prototype.load = function(host) {
   client = new ConnectedByTCP(host);
   
 	client.GetState(function(error,system){
+		self._app.log.info("(TCP Lights) State Response Error=" + error);
 		system.forEach(function(room) { 
 			var device = new Socket(self._app,self.client,room);
 			self.devices.push(device);
