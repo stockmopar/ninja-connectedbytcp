@@ -27,7 +27,7 @@ function cbtcp(opts,app) {
   this._app = app;
   this._opts = opts;
   this._opts.sockets = opts.sockets || [];
-
+  this.devices = [];
   app.once('client::up', this.init.bind(this));
  };
 
@@ -44,20 +44,29 @@ cbtcp.prototype.init = function(){
 module.exports = cbtcp;
 
 cbtcp.prototype.load = function(host) {
+  var self = this;
+  
   this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
   app = this._app;
-
+  
   client = new ConnectedByTCP(host);
   
-  client.GetState(function(error,system){
+	client.GetState(function(error,system){
 		system.forEach(function(room) { 
-			this.emit('register',new Socket(this._app,client,room));
-		}.bind(this));
-  }.bind(this));
+			var device = new Socket(self._app,room);
+			self.devices[] = device;
+			
+			this.emit('register',device);
+		});
+	});
   
     var fetchState = function() {
-		app.fetchlock = 1;
 		client.GetState(function(error,system){
+			if(!error){
+				self.devices.forEach(function(element,index,array){
+					element.updateState(client);
+				});
+			}
 			setTimeout(fetchState,10000);
 		});
 	};
