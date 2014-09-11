@@ -53,7 +53,7 @@ cbtcp.prototype.load = function(host) {
   
 	client.GetState(function(error,system){
 		system.forEach(function(room) { 
-			var device = new Socket(self._app,room);
+			var device = new Socket(self._app,self.client,room);
 			self.devices.push(device);
 			
 			self.emit('register',device);
