@@ -63,7 +63,7 @@ cbtcp.prototype.load = function(host) {
     var fetchState = function() {
 		self._app.log.info("(TCP Lights) Fetching State");
 		client.GetState(function(error,system){
-			self._app.log.info("(TCP Lights) State Response");
+			self._app.log.info("(TCP Lights) State Response Error=" + error);
 			if(!error){
 				self._app.log.info("(TCP Lights) No Error Found");
 				self.devices.forEach(function(element,index,array){
