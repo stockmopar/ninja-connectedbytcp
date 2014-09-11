@@ -56,7 +56,7 @@ cbtcp.prototype.load = function(host) {
 			var device = new Socket(self._app,room);
 			self.devices.push(device);
 			
-			this.emit('register',device);
+			self.emit('register',device);
 		});
 	});
   
