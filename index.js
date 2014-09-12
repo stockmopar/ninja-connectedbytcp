@@ -69,6 +69,7 @@ cbtcp.prototype.load = function(host) {
 			console.log("(TCP Lights) Get State Returned");
 			if(!error){
 				console.log("(TCP Lights) with No Error");
+				console.log(self.devices);
 				system.forEach(function(room) { 
 					console.log("(TCP Lights) Analyzing Room with ID: " + room["rid"]);
 					if( self.devices[room["rid"]] == undefined ){
