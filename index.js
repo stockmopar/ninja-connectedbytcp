@@ -77,8 +77,9 @@ cbtcp.prototype.load = function(host) {
 				});
 			}
 			*/
+			setTimeout(fetchState,1000);
 		});
-		setTimeout(fetchState,3000);
+		
 	};
 	setTimeout(fetchState,1000);
 };
