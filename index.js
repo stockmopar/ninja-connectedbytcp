@@ -62,7 +62,7 @@ cbtcp.prototype.load = function(host) {
 	*/
 	
     var fetchState = function() {
-		self._app.log.info("(TCP Lights) Fetching State");
+		console.log("(TCP Lights) Fetching State");
 		
 		var client = new ConnectedByTCP(host);
 		
