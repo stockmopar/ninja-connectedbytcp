@@ -67,16 +67,15 @@ cbtcp.prototype.load = function(host) {
 		
 		client.GetState(function(error,system){
 			if(!error){
-					system.forEach(function(room) { 
-						if( !(room["rid"] in self.devices) ){
-							var device = new Socket(self._app,room);
-							self.devices[room.id] = device;
-							self.emit('register',device);
-						}else{
-							self.devices[ room["rid"] ].updateState(room);
-						}
-					});
-				}
+				system.forEach(function(room) { 
+					if( !(room["rid"] in self.devices) ){
+						var device = new Socket(self._app,room);
+						self.devices[room.id] = device;
+						self.emit('register',device);
+					}else{
+						self.devices[ room["rid"] ].updateState(room);
+					}
+				});
 			}
 			setTimeout(fetchState,5000);
 		});
