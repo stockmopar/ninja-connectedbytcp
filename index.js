@@ -60,10 +60,12 @@ cbtcp.prototype.load = function(host) {
 	});
 	*/
 	
-    var fetchState = function() {
+	var client = new ConnectedByTCP(host);
+    
+	var fetchState = function() {
 		//console.log("(TCP Lights) Fetching State");
 		
-		var client = new ConnectedByTCP(host);
+		
 		
 		client.GetState(function(error,system){
 			//console.log("(TCP Lights) Get State Returned");
@@ -74,7 +76,7 @@ cbtcp.prototype.load = function(host) {
 					//console.log("(TCP Lights) Analyzing Room with ID: " + room["rid"]);
 					if( self.devices[room["rid"]] == undefined ){
 						//console.log("(TCP Lights) Room did not exist, registering");
-						var device = new Socket(self._app,host,room);
+						var device = new Socket(self._app,client,room);
 						self.devices[room["rid"]] = device;
 						self.emit('register',device);
 					}else{
