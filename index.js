@@ -72,8 +72,9 @@ cbtcp.prototype.load = function(host) {
 					element.updateState(client);
 				});
 			}
-			setTimeout(fetchState,10000);
+			
 		});
+		setTimeout(fetchState,10000);
 	};
 	setTimeout(fetchState,1000);
 };
