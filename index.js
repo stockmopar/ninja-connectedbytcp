@@ -49,9 +49,9 @@ cbtcp.prototype.load = function(host) {
 	this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
 	app = this._app;
 	  
-	client = new ConnectedByTCP(host);
+	self.client = new ConnectedByTCP(host);
   
-	client.GetState(function(error,system){
+	self.client.GetState(function(error,system){
 		self._app.log.info("(TCP Lights) State Response Error=" + error);
 		system.forEach(function(room) { 
 			var device = new Socket(self._app,self.client,room);
@@ -63,7 +63,7 @@ cbtcp.prototype.load = function(host) {
 	
     var fetchState = function() {
 		self._app.log.info("(TCP Lights) Fetching State");
-		client.GetState(function(error,system){
+		self.client.GetState(function(error,system){
 			//self._app.log.info("(TCP Lights) State Response Error=" + error);
 			if(!error){
 				self._app.log.info("(TCP Lights) No Error Found");
