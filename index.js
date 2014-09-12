@@ -75,7 +75,7 @@ cbtcp.prototype.load = function(host) {
 					if( self.devices[room["rid"]] == undefined ){
 						console.log("(TCP Lights) Room did not exist, registering");
 						var device = new Socket(self._app,room);
-						self.devices[room.id] = device;
+						self.devices[room["rid"]] = device;
 						self.emit('register',device);
 					}else{
 						console.log("(TCP Lights) Room existed. Updating State");
