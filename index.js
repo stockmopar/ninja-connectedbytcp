@@ -48,7 +48,6 @@ cbtcp.prototype.load = function(host) {
 	
 	this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
 	app = this._app;
-  
     /*
 	self.client.GetState(function(error,system){
 		self._app.log.info("(TCP Lights) State Response Error=" + error);
@@ -67,17 +66,19 @@ cbtcp.prototype.load = function(host) {
 		var client = new ConnectedByTCP(host);
 		
 		client.GetState(function(error,system){
-			//self._app.log.info("(TCP Lights) State Response Error=" + error);
-			/*
 			if(!error){
-				self._app.log.info("(TCP Lights) No Error Found");
-				self.devices.forEach(function(element,index,array){
-					self._app.log.info("(TCP Lights) Checking " + element.name + " to see if it needs updating");
-					element.updateState(client);
-				});
+					system.forEach(function(room) { 
+						if( !(room["rid"] in self.devices) ){
+							var device = new Socket(self._app,room);
+							self.devices[room.id] = device;
+							self.emit('register',device);
+						}else{
+							self.devices[ room["rid"] ].updateState(room);
+						}
+					});
+				}
 			}
-			*/
-			setTimeout(fetchState,1000);
+			setTimeout(fetchState,5000);
 		});
 		
 	};
