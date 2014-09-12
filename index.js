@@ -44,12 +44,12 @@ cbtcp.prototype.init = function(){
 module.exports = cbtcp;
 
 cbtcp.prototype.load = function(host) {
-  var self = this;
-  
-  this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
-  app = this._app;
-  
-  client = new ConnectedByTCP(host);
+	var self = this;
+	
+	this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
+	app = this._app;
+	  
+	client = new ConnectedByTCP(host);
   
 	client.GetState(function(error,system){
 		self._app.log.info("(TCP Lights) State Response Error=" + error);
@@ -60,7 +60,7 @@ cbtcp.prototype.load = function(host) {
 			self.emit('register',device);
 		});
 	});
-  
+	
     var fetchState = function() {
 		self._app.log.info("(TCP Lights) Fetching State");
 		client.GetState(function(error,system){
