@@ -71,7 +71,7 @@ cbtcp.prototype.load = function(host) {
 				console.log("(TCP Lights) with No Error");
 				system.forEach(function(room) { 
 					console.log("(TCP Lights) Analyzing Room with ID: " + room["rid"]);
-					if( !(room["rid"] in self.devices) ){
+					if( self.devices[room["rid"]] == undefined ){
 						console.log("(TCP Lights) Room did not exist, registering");
 						var device = new Socket(self._app,room);
 						self.devices[room.id] = device;
