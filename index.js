@@ -66,7 +66,9 @@ cbtcp.prototype.load = function(host) {
 		var client = new ConnectedByTCP(host);
 		
 		client.GetState(function(error,system){
+			console.log("(TCP Lights) Get State Returned");
 			if(!error){
+				console.log("(TCP Lights) with No Error");
 				system.forEach(function(room) { 
 					console.log("(TCP Lights) Analyzing Room with ID: " + room["rid"]);
 					if( !(room["rid"] in self.devices) ){
@@ -79,6 +81,8 @@ cbtcp.prototype.load = function(host) {
 						self.devices[ room["rid"] ].updateState(room);
 					}
 				});
+			}else{
+				console.log("(TCP Lights) with Error: " + error);
 			}
 			setTimeout(fetchState,5000);
 		});
