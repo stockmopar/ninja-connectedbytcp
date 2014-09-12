@@ -51,6 +51,7 @@ cbtcp.prototype.load = function(host) {
 	  
 	self.client = new ConnectedByTCP(host);
   
+    /*
 	self.client.GetState(function(error,system){
 		self._app.log.info("(TCP Lights) State Response Error=" + error);
 		system.forEach(function(room) { 
@@ -60,6 +61,7 @@ cbtcp.prototype.load = function(host) {
 			self.emit('register',device);
 		});
 	});
+	*/
 	
     var fetchState = function() {
 		self._app.log.info("(TCP Lights) Fetching State");
