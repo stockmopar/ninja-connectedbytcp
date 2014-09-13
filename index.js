@@ -5,7 +5,7 @@ var Socket = require('./lib/socket')
   , configHandlers = require('./lib/config');
 
 // Give our module a stream interface
-util.inherits(cbtcp,stream);
+util.inherits(connectedbytcp,stream);
 
 /**
  * Called when our client starts up
@@ -21,7 +21,7 @@ util.inherits(cbtcp,stream);
  * @fires register - Emit this when you wish to register a device (see Device)
  * @fires config - Emit this when you wish to send config data back to the cloud
  */
-function cbtcp(opts,app) {
+function connectedbytcp(opts,app) {
 
   var self = this;
   this._app = app;
@@ -34,58 +34,39 @@ function cbtcp(opts,app) {
 /**
  * Discover and load TCP Bases
  */
-cbtcp.prototype.init = function(){
+connectedbytcp.prototype.init = function(){
   this._app.log.info("(TCP Lights) init()");
 
   this._opts.sockets.forEach(this.load.bind(this));
 };
 
 // Export it
-module.exports = cbtcp;
+module.exports = connectedbytcp;
 
-cbtcp.prototype.load = function(host) {
+connectedbytcp.prototype.load = function(host) {
 	var self = this;
 	
 	this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
 	app = this._app;
-    /*
-	self.client.GetState(function(error,system){
-		self._app.log.info("(TCP Lights) State Response Error=" + error);
-		system.forEach(function(room) { 
-			var device = new Socket(self._app,self.client,room);
-			self.devices.push(device);
-			
-			self.emit('register',device);
-		});
-	});
-	*/
 	
 	var client = new ConnectedByTCP(host);
     
 	var fetchState = function() {
-		//console.log("(TCP Lights) Fetching State");
-		
-		
-		
 		client.GetState(function(error,system){
-			//console.log("(TCP Lights) Get State Returned");
 			if(!error){
-				//console.log("(TCP Lights) with No Error");
-				//console.log(self.devices);
 				system.forEach(function(room) { 
-					//console.log("(TCP Lights) Analyzing Room with ID: " + room["rid"]);
 					if( self.devices[room["rid"]] == undefined ){
-						//console.log("(TCP Lights) Room did not exist, registering");
-						var device = new Socket(self._app,client,room);
+						var G = "TCP"+room["rid"];
+						var name = room["name"];
+						var id = room["rid"];
+						
+						var device = new Socket(self._app,client,G,name,id,"room");
 						self.devices[room["rid"]] = device;
 						self.emit('register',device);
 					}else{
-						//console.log("(TCP Lights) Room existed. Updating State");
 						self.devices[ room["rid"] ].updateState(room);
 					}
 				});
-			}else{
-				//console.log("(TCP Lights) with Error: " + error);
 			}
 			setTimeout(fetchState,5000);
 		});
@@ -98,7 +79,7 @@ cbtcp.prototype.load = function(host) {
  * Add a particular TCP to this configuration
  * @param {[String} host Host of the TCP to remember
  */
-cbtcp.prototype.remember = function(host) {
+connectedbytcp.prototype.remember = function(host) {
   this._app.log.info("(TCP Lights) remember()");
   this._opts.sockets.push(host);
   this.save();
@@ -109,7 +90,7 @@ cbtcp.prototype.remember = function(host) {
  * @param  {Object}   rpc     RPC Object
  * @param  {Function} cb      Callback with return data
  */
-cbtcp.prototype.config = function(rpc,cb) {
+connectedbytcp.prototype.config = function(rpc,cb) {
   this._app.log.info("(TCP Lights) config()");
   var self = this;
 

@@ -3,9 +3,11 @@ ninja-connectedbytcp
 
 Changelog
 
-0.0.8
+0.1.0
 
+- Driver rewrite
 - Set brightness level of room
+- Improved stability
 
 0.0.7
 
