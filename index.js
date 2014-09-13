@@ -80,7 +80,18 @@ connectedbytcp.prototype.load = function(host) {
 							});
 						}
 					}else{
+						// Update Room
 						self.devices[ room["rid"] ].updateState(room);
+						
+						// Update Fixtures In Room
+						var rdevices = room["device"];
+						if (typeof(rdevices["did"]) !== 'undefined'){
+							// Only One Device So Don't Add
+						}else{
+							rdevices.forEach(function(rdevice) { 
+								self.devices[ rdevice["did"] ].updateState(rdevice);
+							});
+						}
 					}
 				});
 			}
