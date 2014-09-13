@@ -63,6 +63,22 @@ connectedbytcp.prototype.load = function(host) {
 						var device = new Socket(self._app,client,G,name,id,"room");
 						self.devices[room["rid"]] = device;
 						self.emit('register',device);
+						
+						var rdevices = room["device"];
+						if (typeof(rdevices["did"]) !== 'undefined'){
+							// Only One Device So Don't Add
+						}else{
+							rdevices.forEach(function(rdevice) { 
+								var dG = "TCP"+rdevice["did"];
+								var dname = name + " > " + rdevice["name"];
+								var did = room["did"];
+						
+								var ddevice = new Socket(self._app,client,dG,dname,did,"fixture");
+								
+								self.devices[did] = ddevice;
+								self.emit('register',ddevice);
+							});
+						}
 					}else{
 						self.devices[ room["rid"] ].updateState(room);
 					}
