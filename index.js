@@ -71,7 +71,7 @@ connectedbytcp.prototype.load = function(host) {
 							rdevices.forEach(function(rdevice) { 
 								var dG = "TCP"+rdevice["did"];
 								var dname = name + " > " + rdevice["name"];
-								var did = room["did"];
+								var did = rdevice["did"];
 						
 								var ddevice = new Socket(self._app,client,dG,dname,did,"fixture");
 								
