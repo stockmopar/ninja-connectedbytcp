@@ -73,7 +73,7 @@ connectedbytcp.prototype.load = function(host) {
 								var dname = name + " > " + rdevice["name"];
 								var did = rdevice["did"];
 						
-								var ddevice = new Socket(self._app,client,dG,dname,did,"fixture");
+								var ddevice = new Socket(self._app,client,dG,dname,did,"device");
 								
 								self.devices[did] = ddevice;
 								self.emit('register',ddevice);
