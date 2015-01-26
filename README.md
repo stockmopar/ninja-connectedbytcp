@@ -3,6 +3,9 @@ ninja-connectedbytcp
 
 Changelog
 
+0.0.8
+
+- Attempt at supporting new protocol
 
 0.0.7
 
