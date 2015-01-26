@@ -49,6 +49,7 @@ cbtcp.prototype.load = function(host) {
 
   client = new ConnectedByTCP(host);
   
+  client.Init(function(error){
   client.GetState(function(error,system){
 		system.forEach(function(room) { 
 			this.emit('register',new Socket(this._app,client,room));
@@ -62,6 +63,7 @@ cbtcp.prototype.load = function(host) {
 		});
 	};
 	setTimeout(fetchState,1000);
+  });
 };
 
 /**
