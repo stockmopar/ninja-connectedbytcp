@@ -62,6 +62,7 @@ cbtcp.prototype.load = function(host) {
     		app.log.info("(TCP Lights) Fetch State Called");
 		app.fetchlock = 1;
 		client.GetState(function(error,system){
+			app.log.info("(TCP Lights) Received Updated State");
 			setTimeout(fetchState,10000);
 		});
 	};
