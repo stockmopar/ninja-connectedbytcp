@@ -50,16 +50,16 @@ cbtcp.prototype.load = function(host) {
   client = new ConnectedByTCP(host);
   
   client.Init(function(error){
-  	this._app.log.info("(TCP Lights) Init Called");
+  	app.log.info("(TCP Lights) Init Called");
   client.GetState(function(error,system){
-  		this._app.log.info("(TCP Lights) Get State CAlled");
+  		app.log.info("(TCP Lights) Get State CAlled");
 		system.forEach(function(room) { 
 			this.emit('register',new Socket(this._app,client,room));
 		}.bind(this));
   }.bind(this));
   
     var fetchState = function() {
-    		this._app.log.info("(TCP Lights) Fetch State Called");
+    		app.log.info("(TCP Lights) Fetch State Called");
 		app.fetchlock = 1;
 		client.GetState(function(error,system){
 			setTimeout(fetchState,10000);
