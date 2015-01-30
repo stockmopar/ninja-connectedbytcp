@@ -55,7 +55,7 @@ cbtcp.prototype.load = function(host) {
   	client.GetState(function(error,system){
   		app.log.info("(TCP Lights) Get State CAlled");
 		system.forEach(function(room) { 
-			self.emit('register',new Socket(this._app,client,room));
+			self.emit('register',new Socket(app,client,room));
 		}.bind(this));
   }.bind(this));
   
