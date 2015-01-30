@@ -52,23 +52,25 @@ cbtcp.prototype.load = function(host) {
   
   client.Init(function(error){
   	app.log.info("(TCP Lights) Init Called");
-  	client.GetState(function(error,system){
-  		app.log.info("(TCP Lights) Get State CAlled");
-		system.forEach(function(room) { 
-			self.emit('register',new Socket(app,client,room));
-		}.bind(this));
-  }.bind(this));
-  
-    var fetchState = function() {
-    		app.log.info("(TCP Lights) Fetch State Called");
-		app.fetchlock = 1;
-		client.GetState(function(error,system){
-			app.log.info("(TCP Lights) Received Updated State");
-			setTimeout(fetchState,10000);
-		});
-	};
-	setTimeout(fetchState,1000);
-  });
+  	if(!error){
+	  	client.GetState(function(error2,system){
+	  		app.log.info("(TCP Lights) Get State CAlled");
+			system.forEach(function(room) { 
+				self.emit('register',new Socket(app,client,room));
+			}.bind(this));
+	  	}.bind(this));
+  	}
+    	var fetchState = function() {
+    			app.log.info("(TCP Lights) Fetch State Called");
+			app.fetchlock = 1;
+			client.GetState(function(error,system){
+				app.log.info("(TCP Lights) Received Updated State");
+				setTimeout(fetchState,10000);
+			});
+		};
+		setTimeout(fetchState,1000);
+	});
+
 };
 
 /**
