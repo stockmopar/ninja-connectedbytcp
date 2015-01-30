@@ -45,16 +45,17 @@ module.exports = cbtcp;
 
 cbtcp.prototype.load = function(host) {
   this._app.log.info("(TCP Lights) Device at " + host + " is now being registered");
-  app = this._app;
+  var self = this;
+  var app = this._app;
 
   client = new ConnectedByTCP(host);
   
   client.Init(function(error){
   	app.log.info("(TCP Lights) Init Called");
-  client.GetState(function(error,system){
+  	client.GetState(function(error,system){
   		app.log.info("(TCP Lights) Get State CAlled");
 		system.forEach(function(room) { 
-			app.emit('register',new Socket(this._app,client,room));
+			self.emit('register',new Socket(this._app,client,room));
 		}.bind(this));
   }.bind(this));
   
