@@ -101,7 +101,7 @@ connectedbytcp.prototype.load = function(host) {
 			
 		};
 		setTimeout(fetchState,1000);
-	}
+	});
 };
 
 /**
