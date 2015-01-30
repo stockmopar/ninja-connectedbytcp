@@ -1,4 +1,4 @@
-var Socket = require('./lib/socket')
+var Device = require('./lib/device')
   , util = require('util')
   , stream = require('stream')
   , ConnectedByTCP = require('connectedbytcp')
@@ -51,55 +51,57 @@ connectedbytcp.prototype.load = function(host) {
 	
 	var client = new ConnectedByTCP(host);
     
-	var fetchState = function() {
-		client.GetState(function(error,system){
-			if(!error){
-				system.forEach(function(room) { 
-					if( self.devices[room["rid"]] == undefined ){
-						var G = "TCP"+room["rid"];
-						var name = room["name"];
-						var id = room["rid"];
-						
-						var device = new Socket(self._app,client,G,name,id,"room");
-						self.devices[room["rid"]] = device;
-						self.emit('register',device);
-						
-						var rdevices = room["device"];
-						if (typeof(rdevices["did"]) !== 'undefined'){
-							// Only One Device So Don't Add
+	client.Init(function(error){
+		var fetchState = function() {
+			client.GetState(function(error,system){
+				if(!error){
+					system.forEach(function(room) { 
+						if( self.devices[room["rid"]] == undefined ){
+							var G = "TCP"+room["rid"];
+							var name = room["name"];
+							var id = room["rid"];
+							
+							var roomdevice = new Device(self._app,client,G,name,id,"room");
+							self.devices[room["rid"]] = roomdevice;
+							self.emit('register',roomdevice);
+							
+							var rdevices = room["device"];
+							if (typeof(rdevices["did"]) !== 'undefined'){
+								// Only One Device So Don't Add
+							}else{
+								rdevices.forEach(function(rdevice) { 
+									var dG = "TCP"+rdevice["did"];
+									var dname = name + " > " + rdevice["name"];
+									var did = rdevice["did"];
+							
+									var ddevice = new Device(self._app,client,dG,dname,did,"device");
+									
+									self.devices[did] = ddevice;
+									self.emit('register',ddevice);
+								});
+							}
 						}else{
-							rdevices.forEach(function(rdevice) { 
-								var dG = "TCP"+rdevice["did"];
-								var dname = name + " > " + rdevice["name"];
-								var did = rdevice["did"];
-						
-								var ddevice = new Socket(self._app,client,dG,dname,did,"device");
-								
-								self.devices[did] = ddevice;
-								self.emit('register',ddevice);
-							});
+							// Update Room
+							self.devices[ room["rid"] ].updateState(room);
+							
+							// Update Fixtures In Room
+							var rdevices = room["device"];
+							if (typeof(rdevices["did"]) !== 'undefined'){
+								// Only One Device So Don't Add
+							}else{
+								rdevices.forEach(function(rdevice) { 
+									self.devices[ rdevice["did"] ].updateState(rdevice);
+								});
+							}
 						}
-					}else{
-						// Update Room
-						self.devices[ room["rid"] ].updateState(room);
-						
-						// Update Fixtures In Room
-						var rdevices = room["device"];
-						if (typeof(rdevices["did"]) !== 'undefined'){
-							// Only One Device So Don't Add
-						}else{
-							rdevices.forEach(function(rdevice) { 
-								self.devices[ rdevice["did"] ].updateState(rdevice);
-							});
-						}
-					}
-				});
-			}
-			setTimeout(fetchState,5000);
-		});
-		
-	};
-	setTimeout(fetchState,1000);
+					});
+				}
+				setTimeout(fetchState,5000);
+			});
+			
+		};
+		setTimeout(fetchState,1000);
+	}
 };
 
 /**
